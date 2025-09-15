@@ -35,6 +35,7 @@ export function useFetch<T = unknown>(url: string, init?: RequestInit) {
       if (!res.ok) throw new Error(`Request failed: ${res.status}`);
       const json = (await res.json()) as T;
       setState({ data: json, loading: false, error: null });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       if (err?.name === "AbortError") return;
       setState({
